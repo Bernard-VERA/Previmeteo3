@@ -1,0 +1,23 @@
+.error-container {
+  background-color: rgba(231, 76, 60, 0.9);
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  max-width: 500px;
+  margin: 1rem auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.error-icon {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.error-message {
+  margin: 0;
+  font-size: 1rem;
+}

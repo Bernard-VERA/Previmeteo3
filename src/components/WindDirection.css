@@ -1,0 +1,8 @@
+.wind-direction {
+  margin-bottom: 0.5rem;
+}
+
+.arrow-container {
+  display: inline-block;
+  transition: transform 0.5s ease;
+}
