@@ -8,13 +8,13 @@ export const getCityCoordinates = async (cityName) => {
     const response = await fetch(`${OPEN_METEO_GEO_API}?name=${encodeURIComponent(cityName)}&count=1`)
     
     if (!response.ok) {
-      throw new Error('City not found')
+      throw new Error('Ville inconnue')
     }
     
     const data = await response.json()
     
     if (!data.results || data.results.length === 0) {
-      throw new Error('City not found')
+      throw new Error('Ville inconnue')
     }
     
     const { latitude, longitude, name } = data.results[0]
