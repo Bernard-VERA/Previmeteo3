@@ -12,14 +12,13 @@ import {
 import WindDirection from './WindDirection'
 import './WeatherCard.css'
 
-const WeatherCard = ({ data, dayLabel }) => {
+const WeatherCard = ({ data, dayLabel, compact, onClick }) => {
   if (!data) return null
 
   const { weatherType, weatherDescription, tempMax, tempMin, windSpeed, windDirection } = data
   
-  // Get appropriate weather icon based on type
   const getWeatherIcon = () => {
-    const iconSize = 80
+    const iconSize = compact ? 60 : 80
     switch (weatherType) {
       case 'clear':
         return <WiDaySunny size={iconSize} />
@@ -43,15 +42,16 @@ const WeatherCard = ({ data, dayLabel }) => {
     }
   }
 
-  // Format date to display day of week
   const formatDate = (dateString) => {
     const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']
     const date = new Date(dateString)
     return days[date.getDay()]
   }
 
+  const cardClassName = `weather-card fade-in ${onClick ? 'clickable' : ''} ${compact ? 'compact' : ''}`
+
   return (
-    <div className="weather-card fade-in">
+    <div className={cardClassName} onClick={onClick}>
       <h2 className="day-label">{dayLabel || formatDate(data.date)}</h2>
       <div className="weather-icon">
         {getWeatherIcon()}

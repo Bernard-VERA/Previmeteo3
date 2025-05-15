@@ -14,9 +14,18 @@
   min-height: 300px;
 }
 
-.weather-card:hover {
+.weather-card.clickable {
+  cursor: pointer;
+}
+
+.weather-card.clickable:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.weather-card.compact {
+  min-height: 200px;
+  padding: 1rem;
 }
 
 .day-label {
@@ -59,6 +68,18 @@
 
 .wind-speed {
   font-size: 1.1rem;
+}
+
+.weather-card.compact .day-label {
+  font-size: 1.2rem;
+}
+
+.weather-card.compact .weather-description {
+  font-size: 1rem;
+}
+
+.weather-card.compact .temperature {
+  font-size: 1.3rem;
 }
 
 @media (max-width: 768px) {
