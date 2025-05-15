@@ -1,8 +1,11 @@
 import { FaTimes } from 'react-icons/fa'
 import WeatherCard from './WeatherCard'
+import { useTheme } from '../context/ThemeContext'
 import './WeatherModal.css'
 
 const WeatherModal = ({ isOpen, onClose, weatherData, dayLabel }) => {
+  const { theme } = useTheme()
+  
   if (!isOpen || !weatherData) return null
 
   // Split the day into three time periods
@@ -14,7 +17,7 @@ const WeatherModal = ({ isOpen, onClose, weatherData, dayLabel }) => {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={e => e.stopPropagation()}>
+      <div className={`modal-content ${theme}`} onClick={e => e.stopPropagation()}>
         <button className="close-button" onClick={onClose}>
           <FaTimes />
         </button>

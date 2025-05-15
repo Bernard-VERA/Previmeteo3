@@ -1,5 +1,4 @@
 .weather-card {
-  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   padding: 1.5rem;
   backdrop-filter: blur(10px);
@@ -9,9 +8,10 @@
   align-items: center;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 280px;
   height: 100%;
   min-height: 300px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
 }
 
 .weather-card.clickable {
@@ -21,6 +21,7 @@
 .weather-card.clickable:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 .weather-card.compact {
@@ -32,22 +33,25 @@
   margin-bottom: 1rem;
   font-weight: bold;
   font-size: 1.5rem;
+  color: inherit;
 }
 
 .weather-icon {
   margin-bottom: 1rem;
-  color: #fff;
+  color: inherit;
 }
 
 .weather-description {
   margin-bottom: 1rem;
   font-size: 1.2rem;
   font-weight: 500;
+  color: inherit;
 }
 
 .temperature {
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
+  color: inherit;
 }
 
 .temp-max {
@@ -64,6 +68,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  color: inherit;
 }
 
 .wind-speed {
