@@ -7,7 +7,7 @@
 ![image](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=FFFFFF)
 ![image](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=FFFFFF)
 ![image](https://img.shields.io/badge/API?style=for-the-badge&logo=API&logoColor=white)
-![image](https://img.shields.io/badge/OPEN_METEO-blue?style=for-the-badge&label=API)
+![Static Badge](https://img.shields.io/badge/OPEN_METEO-blue?style=for-the-badge&label=API)
 
 <br/>
 
