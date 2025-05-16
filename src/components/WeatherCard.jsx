@@ -15,7 +15,7 @@ import './WeatherCard.css'
 const WeatherCard = ({ data, dayLabel, compact, onClick }) => {
   if (!data) return null
 
-  const { weatherType, weatherDescription, tempMax, tempMin, windSpeed, windDirection } = data
+const { temp, weatherType, weatherDescription, tempMax, tempMin, windSpeed, windDirection } = data;
   
   const getWeatherIcon = () => {
     const iconSize = compact ? 60 : 80
@@ -58,9 +58,15 @@ const WeatherCard = ({ data, dayLabel, compact, onClick }) => {
       </div>
       <p className="weather-description">{weatherDescription}</p>
       <div className="temperature">
-        <span className="temp-max">{tempMax}°C</span>
-        {tempMin !== tempMax && <span className="temp-min"> / {tempMin}°C</span>}
-      </div>
+        {temp !== undefined ? (
+    <span className="temp">{Math.round(temp)}°C</span> // temp pour la modale, temp-max et temp-min pour la Home-page
+  ) : (
+    <>
+      <span className="temp-max">{Math.round(tempMax)}°C</span> 
+      <span className="temp-min"> / {Math.round(tempMin)}°C</span>
+    </>
+  )}
+</div>
       <div className="wind-info">
         <WindDirection direction={windDirection} />
         <span className="wind-speed">{windSpeed} km/h</span>

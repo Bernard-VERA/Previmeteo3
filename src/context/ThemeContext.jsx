@@ -1,3 +1,4 @@
+/* eslint-disable  */
 import { createContext, useContext, useState, useEffect } from 'react'
 
 const ThemeContext = createContext(null)
@@ -28,7 +29,7 @@ export const ThemeProvider = ({ children }) => {
 export const useTheme = () => {
   const context = useContext(ThemeContext)
   if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider')
+    throw new Error('useTheme doit être utilisé dans un ThemeProvider')
   }
   return context
 }

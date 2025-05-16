@@ -1,19 +1,30 @@
+/* eslint-disable  */
 import { FaTimes } from 'react-icons/fa'
+import { useEffect } from 'react'
+import { useWeather } from '../hooks/useWeather'
 import WeatherCard from './WeatherCard'
 import { useTheme } from '../context/ThemeContext'
 import './WeatherModal.css'
 
 const WeatherModal = ({ isOpen, onClose, weatherData, dayLabel }) => {
-  const { theme } = useTheme()
-  
+  const { theme } = useTheme();
+  const { fetchDetailedWeatherData, city } = useWeather();
+
+ useEffect(() => {
+  if (isOpen && city) {
+    fetchDetailedWeatherData(city);
+  }
+}, [isOpen, city]);
+
   if (!isOpen || !weatherData) return null
 
-  // Split the day into three time periods
-  const periods = [
-    { label: 'Matin', data: { ...weatherData, tempMax: weatherData.tempMax - 2 } },
-    { label: 'Après-midi', data: weatherData },
-    { label: 'Soir', data: { ...weatherData, tempMax: weatherData.tempMax - 4 } }
-  ]
+  // Divise la journée en trois périodes de temps
+ const periods = weatherData ? [
+  { label: 'Matin', data: weatherData.morning },
+  { label: 'Après-midi', data: weatherData.afternoon },
+  { label: 'Soir', data: weatherData.evening }
+  ].filter(period => period.data) : [];
+  // Supprime les périodes vides
 
   return (
     <div className="modal-overlay" onClick={onClose}>

@@ -6,7 +6,7 @@ export const useWeather = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [city, setCity] = useState(() => {
-    // Try to get the last searched city from localStorage
+    // Essaie d'obtenir la dernière ville recherchée dans le localStorage.
     return localStorage.getItem('lastCity') || 'Marseille'
   })
 
@@ -15,13 +15,13 @@ export const useWeather = () => {
     setError(null)
     
     try {
-      // Get city coordinates
+      // Récupère les coordonnées de la ville
       const coordinates = await getCityCoordinates(cityName)
       
-      // Get weather forecast with coordinates
-      const forecast = await getWeatherForecast(coordinates.latitude, coordinates.longitude)
-      
-      // Save city to state and localStorage
+      // Récupère les prévisions météorologiques avec des coordonnées
+      const forecast = await getWeatherForecast(coordinates.latitude, coordinates.longitude, "home")
+
+      // Enregistre la ville dans le state et le stockage local
       setCity(coordinates.name)
       localStorage.setItem('lastCity', coordinates.name)
       
@@ -33,17 +33,37 @@ export const useWeather = () => {
       setLoading(false)
     }
   }
+const fetchDetailedWeatherData = async (date) => {
+  setLoading(true);
+  setError(null);
 
-  // Fetch weather for default/saved city on initial load
+  try {
+    const coordinates = await getCityCoordinates(city);
+    const detailedForecast = await getWeatherForecast(coordinates.latitude, coordinates.longitude, "hourly", date);
+
+    return detailedForecast; //  Ajoute un retour
+  } catch (err) {
+    setError(err.message || 'Une erreur est survenue.');
+    console.error(err);
+  } finally {
+    setLoading(false);
+  }
+};
+
+  // Récupérer la météo pour la ville par défaut/sauvegardée au chargement initial
   useEffect(() => {
     fetchWeatherData(city)
-  }, [])
+  }, [city])
 
   return {
     weatherData,
     loading,
     error,
     city,
-    fetchWeatherData
-  }
+    fetchWeatherData,
+    fetchDetailedWeatherData
+  };
 }
+
+
+

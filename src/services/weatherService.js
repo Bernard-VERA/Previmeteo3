@@ -1,8 +1,8 @@
-// OpenMeteo API service for weather data
+// Service API OpenMeteo pour les données météorologiques
 const OPEN_METEO_WEATHER_API = 'https://api.open-meteo.com/v1/forecast'
 const OPEN_METEO_GEO_API = 'https://geocoding-api.open-meteo.com/v1/search'
 
-// Get city coordinates by name
+// Obtient les coordonnées de la ville par son nom
 export const getCityCoordinates = async (cityName) => {
   try {
     const response = await fetch(`${OPEN_METEO_GEO_API}?name=${encodeURIComponent(cityName)}&count=1`)
@@ -25,28 +25,31 @@ export const getCityCoordinates = async (cityName) => {
   }
 }
 
-// Get weather forecast for a location
-export const getWeatherForecast = async (latitude, longitude) => {
+// Obtient les prévisions météorologiques pour un emplacement
+export const getWeatherForecast = async (latitude, longitude, mode = "home", selectedDate = null) => {
   try {
     const response = await fetch(
-      `${OPEN_METEO_WEATHER_API}?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min,weathercode,windspeed_10m_max,winddirection_10m_dominant&timezone=auto&forecast_days=3`
-    )
+      `${OPEN_METEO_WEATHER_API}?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weathercode,windspeed_10m,winddirection_10m&timezone=auto`
+    );
     
     if (!response.ok) {
-      throw new Error('Failed to fetch weather data')
+      throw new Error('Failed to fetch weather data');
     }
     
-    const data = await response.json()
-    return formatWeatherData(data)
+    const data = await response.json();
+    
+    return mode === "home" 
+      ? formatWeatherDataForHome(data)  // Utilisé pour la page d'accueil
+      : formatWeatherDataByHour(data, selectedDate);  // Passe `selectedDate` ici, pour le jour sélectionné
   } catch (error) {
-    console.error('Error fetching weather forecast:', error)
-    throw error
+    console.error('Error fetching weather forecast:', error);
+    throw error;
   }
-}
+};
 
-// Helper function to map weather codes to descriptions and icons
+// Fonction d'aide pour mapper les codes météorologiques aux descriptions et aux icônes
 export const getWeatherInfo = (code) => {
-  // WMO Weather interpretation codes
+  // Codes d'interprétation météorologique de l'OMM
   // https://open-meteo.com/en/docs
   const weatherCodes = {
     0: { description: 'Ensoleillé', type: 'clear' },
@@ -82,22 +85,76 @@ export const getWeatherInfo = (code) => {
   return weatherCodes[code] || { description: 'Mitigé', type: 'mixed' }
 }
 
-// Transform API response to application format
-const formatWeatherData = (data) => {
-  const { daily } = data
-  
-  return daily.time.map((date, index) => {
-    const weatherCode = daily.weathercode[index]
-    const weatherInfo = getWeatherInfo(weatherCode)
-    
-    return {
-      date,
-      tempMax: Math.round(daily.temperature_2m_max[index]),
-      tempMin: Math.round(daily.temperature_2m_min[index]),
+// Transforme la réponse de l'API au format de l'application
+const formatWeatherDataByHour = (data, selectedDate) => {
+  const { hourly } = data;
+  const targetHours = [8, 14, 20];
+  const dailyForecast = { date: selectedDate, morning: null, afternoon: null, evening: null };
+
+  hourly.time.forEach((timestamp, index) => {
+    const date = timestamp.split('T')[0];
+    const hour = new Date(timestamp).getHours();
+
+    if (date !== selectedDate) return; // Filtre uniquement le jour sélectionné
+    if (!targetHours.includes(hour)) return; 
+
+    const weatherCode = hourly.weathercode[index];
+    const weatherInfo = getWeatherInfo(weatherCode);
+
+    const entry = {
+      temp: Math.round(hourly.temperature_2m[index]),
       weatherType: weatherInfo.type,
       weatherDescription: weatherInfo.description,
-      windSpeed: Math.round(daily.windspeed_10m_max[index]),
-      windDirection: daily.winddirection_10m_dominant[index]
+      windSpeed: Math.round(hourly.windspeed_10m[index]),
+      windDirection: hourly.winddirection_10m[index]
+    };
+
+    if (hour === 8) dailyForecast.morning = entry;
+    else if (hour === 14) dailyForecast.afternoon = entry;
+    else if (hour === 20) dailyForecast.evening = entry;
+  });
+
+  return dailyForecast;
+};
+
+const formatWeatherDataForHome = (data) => {
+  const targetHours = [8, 14, 20]; // Heures spécifiques de relevé météo 8h, 14h et 20h
+  const { hourly } = data;
+  const groupedData = {};
+
+  hourly.time.forEach((timestamp, index) => {
+    const date = timestamp.split('T')[0]; // Extrait la date sans l'heure
+    const hour = new Date(timestamp).getHours();
+
+    if (!targetHours.includes(hour)) return;
+
+    if (!groupedData[date]) {
+      groupedData[date] = {
+        date,
+        temperatures: [], // Stocke toutes les températures du jour
+        weatherTypes: [],
+        weatherDescriptions: [],
+        windSpeeds: [],
+        windDirections: [],
+      };
     }
-  })
-}
+
+    // Ajoute les valeurs aux listes pour ce jour
+    groupedData[date].temperatures.push(hourly.temperature_2m[index]);
+    groupedData[date].weatherTypes.push(getWeatherInfo(hourly.weathercode[index]).type);
+    groupedData[date].weatherDescriptions.push(getWeatherInfo(hourly.weathercode[index]).description);
+    groupedData[date].windSpeeds.push(hourly.windspeed_10m[index]);
+    groupedData[date].windDirections.push(hourly.winddirection_10m[index]);
+  });
+
+  // Transforme les données regroupées en format final
+  return Object.values(groupedData).map((entry) => ({
+    date: entry.date,
+    tempMax: Math.max(...entry.temperatures),
+    tempMin: Math.min(...entry.temperatures),
+    weatherType: entry.weatherTypes[0], // Utilise la première météo du jour
+    weatherDescription: entry.weatherDescriptions[0],
+    windSpeed: Math.round(entry.windSpeeds[0]),
+    windDirection: entry.windDirections[0],
+  })).slice(0, 3); // Garde seulement aujourd'hui, demain et après-demain
+};

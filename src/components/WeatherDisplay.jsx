@@ -1,23 +1,34 @@
+/* eslint-disable  */
 import { useState } from 'react'
 import WeatherCard from './WeatherCard'
 import WeatherModal from './WeatherModal'
+import { useWeather } from '../hooks/useWeather'
 import './WeatherDisplay.css'
 
 const WeatherDisplay = ({ weatherData, city }) => {
-  const [selectedDay, setSelectedDay] = useState(null)
-  const [selectedDayLabel, setSelectedDayLabel] = useState('')
+  const [selectedDay, setSelectedDay] = useState(null);
+  const [selectedDayLabel, setSelectedDayLabel] = useState('');
 
   if (!weatherData || weatherData.length === 0) {
-    return null
+    return null;
   }
 
-  // Labels for the three columns
-  const dayLabels = ["Aujourd'hui", "Demain", "Après-demain"]
+  // Étiquettes pour les trois colonnes
+  const dayLabels = ["Aujourd'hui", "Demain", "Après-demain"];
 
-    const handleCardClick = (day, label) => {
-    setSelectedDay(day)
-    setSelectedDayLabel(label)
+  // Utilisation de useWeather() ici, au niveau du composant
+  const { fetchDetailedWeatherData } = useWeather();
+  
+const handleCardClick = async (day, label) => {
+  setSelectedDayLabel(label);
+  
+  try {
+    const detailedData = await fetchDetailedWeatherData(day.date);
+    setSelectedDay(detailedData);
+  } catch (error) {
+    console.error("Erreur lors du chargement des données détaillées :", error);
   }
+};
 
   return (
     <div className="weather-display-container">
