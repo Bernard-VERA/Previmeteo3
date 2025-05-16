@@ -118,6 +118,7 @@
 
   .modal-content {
     padding: 1.5rem;
+    height: 85dvh;
   }
 
   .modal-title {
