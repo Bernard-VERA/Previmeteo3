@@ -73,8 +73,8 @@
   gap: 2rem;
   margin-bottom: 2rem;
   flex: 1;
-  width: 65dvw;
   margin: 0 auto;
+  width: 90%;
 }
 
 .period-item {
@@ -116,6 +116,7 @@
   .periods-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
+    width: 65dvw;
   }
 
   .modal-content {
