@@ -11,6 +11,7 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <Navbar />
+      <div className="info-text"><p>Prévisions sur 3 jours</p></div>
       <div className="content">
         <SearchBar onSearch={fetchWeatherData} loading={loading} />
         {error && <ErrorMessage message={error} />}
@@ -23,6 +24,7 @@ const HomePage = () => {
           <WeatherDisplay weatherData={weatherData} city={city} />
         )}
       </div>
+      <div className="detail-text"><p>Cliquez sur une journée pour les détails !</p></div>
     </div>
   )
 }

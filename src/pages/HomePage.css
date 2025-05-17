@@ -4,6 +4,14 @@
   flex-direction: column;
 }
 
+.info-text {
+  width: 60%;
+  margin: 0 auto;
+  padding-top: 40px;
+  text-align: center;
+  color: #fff;
+}
+
 .content {
   flex: 1;
   padding: 1rem;
@@ -36,4 +44,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.detail-text {
+  width: 60%;
+  margin: 20px auto;
+  padding-bottom: 70px;
+  text-align: center;
+  color: #fff;
+}
+
+.detail-text p, .info-text p {
+  font-weight: 600;
+  text-shadow: 2px 2px 6px rgb(151, 148, 148);
 }

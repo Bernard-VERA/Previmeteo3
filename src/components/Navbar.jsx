@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <nav className={`navbar ${theme}`}>
       <div className="navbar-container">
-        <h1 className="navbar-logo">Ma météo</h1>
+        <h1 className="navbar-logo">PréviMétéo</h1>
         <button 
           className="theme-toggle-btn" 
           onClick={toggleTheme}
