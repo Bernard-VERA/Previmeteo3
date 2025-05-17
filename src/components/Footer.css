@@ -1,0 +1,36 @@
+footer {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.footer.light {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.footer.dark {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.footer-text {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  text-align: center;
+  gap: 5px;
+}
+
+.footer-left-space, .footer-right-space {
+    width: 1rem;
+    height: 4rem;
+  }

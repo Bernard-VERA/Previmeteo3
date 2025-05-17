@@ -2,6 +2,7 @@ import { useWeather } from '../hooks/useWeather'
 import Navbar from '../components/Navbar'
 import SearchBar from '../components/SearchBar'
 import WeatherDisplay from '../components/WeatherDisplay'
+import Footer from '../components/Footer'
 import ErrorMessage from '../components/ErrorMessage'
 import './HomePage.css'
 
@@ -25,6 +26,7 @@ const HomePage = () => {
         )}
       </div>
       <div className="detail-text"><p>Cliquez sur une journée pour les détails !</p></div>
+      <Footer />
     </div>
   )
 }
