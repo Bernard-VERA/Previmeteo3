@@ -5,13 +5,13 @@ const ThemeContext = createContext(null)
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
-    // Try to get theme from localStorage on initial load
+    // Essaie d'obtenir le thème à partir du localStorage lors du chargement initial
     const savedTheme = localStorage.getItem('theme')
     return savedTheme || 'light'
   })
 
   useEffect(() => {
-    // Save theme to localStorage whenever it changes
+    // Enregistre le thème dans le localStorage à chaque fois qu'il change
     localStorage.setItem('theme', theme)
   }, [theme])
 

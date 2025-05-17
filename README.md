@@ -52,5 +52,5 @@ Pour une meilleure qualité de code, l'intégration de TypeScript et ESLint est 
 ----
 
 <p align="center" width="100%">
-    <img width="90%" src="https://github.com/Bernard-VERA/Previmeteo3/blob/main/public/images/meteo.jpg"> 
+    <img width="90%" src="https://github.com/Bernard-VERA/Previmeteo3/blob/main/public/images/readme-image.jpg"> 
 </p>

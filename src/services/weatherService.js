@@ -11,7 +11,7 @@ export const getCityCoordinates = async (cityName) => {
       throw new Error('Ville inconnue')
     }
     
-    const data = await response.json()
+    const data = await response.json() // Récupère les données des villes au format JSON
     
     if (!data.results || data.results.length === 0) {
       throw new Error('Ville inconnue')
@@ -36,7 +36,7 @@ export const getWeatherForecast = async (latitude, longitude, mode = "home", sel
       throw new Error('Failed to fetch weather data');
     }
     
-    const data = await response.json();
+    const data = await response.json(); // Récupère les données météo au format JSON
     
     return mode === "home" 
       ? formatWeatherDataForHome(data)  // Utilisé pour la page d'accueil
