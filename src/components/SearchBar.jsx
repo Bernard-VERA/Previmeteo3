@@ -17,6 +17,7 @@ const SearchBar = ({ onSearch, loading }) => {
       <form onSubmit={handleSubmit} className="search-form">
         <input
           type="text"
+          aria-label="nom de ville"
           placeholder="Rechercher une ville..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -24,7 +25,8 @@ const SearchBar = ({ onSearch, loading }) => {
           disabled={loading}
         />
         <button 
-          type="submit" 
+          type="submit"
+          aria-label="rechercher"
           className="search-button"
           disabled={loading || !query.trim()}
         >
