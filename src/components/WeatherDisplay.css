@@ -23,6 +23,7 @@
     grid-template-columns: 1fr;
     gap: 1.5rem;
     width: 65dvw;
+    margin: 0 auto;
   }
 }
 
@@ -39,5 +40,6 @@
   
   .weather-display-container {
     padding: 0.8rem;
+    align-content: center;
   }
 }
