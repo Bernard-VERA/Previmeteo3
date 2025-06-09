@@ -31,9 +31,13 @@ PréviMétéo est une application météo moderne permettant aux utilisateurs de
 
 - Traitement des données API : Adaptation des réponses JSON pour une présentation claire et ergonomique.
 
+- Mise en place d'un loading-spinner, qui aide à patienter pendant le chargement des données.
+
 - Optimisation des performances : Gestion efficace des requêtes API pour minimiser les délais de réponse.
 
 - UI/UX : Design Mobile First, avec une interface conviviale et réactive, adaptée à différents appareils.
+
+- Création d'un mode clair/sombre selon le choix de l'utilisateur.
 
 - Gestion des erreurs : Mise en place de mécanismes pour gérer les cas d'erreur et garantir une expérience utilisateur optimale.<br/>
 
