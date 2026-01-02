@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="footer-left-space" ></div>
         <div className="footer-text">
             <p>PréviMétéo - Bernard VERA </p>
-            <p>2025 &copy; Tous droits réservés</p>
+            <p> {new Date().getFullYear()} &copy; Tous droits réservés</p>
         </div>
         <div className="footer-right-space" ></div>
       </div>
