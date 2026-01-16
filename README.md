@@ -3,7 +3,7 @@
 ![image](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![image](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![image](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![image](https://img.shields.io/badge/VITE-323330?style=for-the-badge&logo=vite&logoColor=646CFF)
+![image](https://img.shields.io/badge/VITE-323330?style=for-the-badge&logo=vite&logoColor=white)
 ![image](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=FFFFFF)
 ![image](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=FFFFFF)
 ![image](https://img.shields.io/badge/OPEN_METEO-blue?style=for-the-badge&label=API)
