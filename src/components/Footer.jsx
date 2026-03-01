@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="footer-container">
         <div className="footer-left-space" ></div>
         <div className="footer-text">
-            <p>PréviMétéo - Bernard VERA </p>
+            <p>PréviMétéo3 - Bernard VERA </p>
             <p> {new Date().getFullYear()} &copy; Tous droits réservés</p>
         </div>
         <div className="footer-right-space" ></div>
