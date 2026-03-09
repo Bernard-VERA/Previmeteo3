@@ -12,7 +12,7 @@
 
 ## 🌦️ Présentation
 
-PréviMétéo est une application météo moderne permettant aux utilisateurs de consulter des prévisions météorologiques précises, sur 3 jours. Développée avec React et Vite, elle exploite les API Open-Meteo Forecast pour la localisation des villes, et Open-Meteo Weather pour fournir des données météorologiques actualisées et fiables.
+PréviMétéo3 est une application météo minimaliste et moderne permettant aux utilisateurs de consulter des prévisions météorologiques, sur 3 jours. Développée avec React et Vite, elle exploite les API Open-Meteo Forecast pour la localisation des villes, et Open-Meteo Weather pour fournir des données météorologiques actualisées et fiables.
 
 
 ## 🚀 Compétences mises en œuvre
