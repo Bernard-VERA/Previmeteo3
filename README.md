@@ -46,6 +46,12 @@ Ce projet démontre une maîtrise des technologies modernes du web et une capaci
 
 ----
 
+# Si vous clonez le projet
+Faire : npm install<br/>
+Pour lancer le projet faire: npm run dev
+
+----
+
 React + Vite permet un développement rapide et optimisé. Deux plugins sont disponibles :
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) qui utilise (Babel) pour un rafraîchissement rapide
