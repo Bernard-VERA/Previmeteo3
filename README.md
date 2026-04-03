@@ -43,11 +43,11 @@ PréviMétéo3 est une application météo minimaliste et moderne permettant aux
 - Gestion des erreurs : Mise en place de mécanismes pour gérer les cas d'erreur et garantir une expérience utilisateur optimale.<br/>
 
 Ce projet démontre une maîtrise des technologies modernes du web et une capacité à surmonter des défis techniques liés à l'intégration d'API et à l'optimisation des performances. 🚀  
-<br/>
-<br/>
+
+
 Vous pouvez voir le projet en cliquant ici : <a href="https://previmeteo.vercel.app/" target="_blank">Prévimétéo3</a>
-<br/>
-<br/>
+
+
 ----
 
 # Si vous clonez le projet
